@@ -1,2 +1,0 @@
-# future-money
-money-simulator
