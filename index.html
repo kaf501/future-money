@@ -1,23 +1,247 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تحدي الذكاء</title>
-
-<link rel="stylesheet" href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>سين جيم | النسخة النهائية القوية</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
 
-<h1>تحدي الذكاء</h1>
+  <div class="app-shell">
+    <header class="topbar glass">
+      <div class="brand">
+        <div class="brand-icon">؟</div>
+        <div class="brand-text">
+          <h1>سـيـن جـيـم</h1>
+          <p>نسخة احترافية جداً للأسئلة والتحدي</p>
+        </div>
+      </div>
 
-<div id="app"></div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span>الفئة</span>
+          <strong id="currentCategory">-</strong>
+        </div>
+        <div class="stat-card">
+          <span>النقاط</span>
+          <strong id="score">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>السؤال</span>
+          <strong><span id="questionNumber">0</span>/<span id="questionTotal">0</span></strong>
+        </div>
+        <div class="stat-card timer-card">
+          <span>الوقت</span>
+          <strong><span id="timer">15</span> ث</strong>
+        </div>
+        <div class="stat-card">
+          <span>السلسلة</span>
+          <strong id="streak">0</strong>
+        </div>
+      </div>
+    </header>
 
-<script src="config.js"></script>
-<script src="questions.js"></script>
-<script src="script.js"></script>
+    <main class="layout">
+      <section class="main-panel glass">
 
+        <!-- شاشة البداية -->
+        <section id="startScreen" class="screen active">
+          <div class="hero-box">
+            <h2>أقوى نسخة لعبة أسئلة</h2>
+            <p>
+              اختر الفئة، عدد الأسئلة، والوقت. اللعبة مصممة بشكل واضح وكبير
+              ومناسبة للآيفون.
+            </p>
+          </div>
+
+          <div class="setup-grid">
+            <div class="setup-card">
+              <label for="playerName">اسم اللاعب</label>
+              <input id="playerName" type="text" maxlength="20" placeholder="مثال: خالد" />
+            </div>
+
+            <div class="setup-card">
+              <label for="questionCount">عدد الأسئلة</label>
+              <select id="questionCount">
+                <option value="5">5 أسئلة</option>
+                <option value="10" selected>10 أسئلة</option>
+                <option value="15">15 سؤال</option>
+              </select>
+            </div>
+
+            <div class="setup-card">
+              <label for="timePerQuestion">وقت كل سؤال</label>
+              <select id="timePerQuestion">
+                <option value="10">10 ثواني</option>
+                <option value="15" selected>15 ثانية</option>
+                <option value="20">20 ثانية</option>
+              </select>
+            </div>
+          </div>
+
+          <h3 class="section-title">اختر الفئة</h3>
+
+          <div class="category-grid">
+            <button class="category-btn" data-category="عشوائي">
+              <span class="emoji">🎲</span>
+              <span class="title">عشوائي</span>
+              <span class="desc">أسئلة من كل الفئات</span>
+            </button>
+
+            <button class="category-btn" data-category="الكويت">
+              <span class="emoji">🇰🇼</span>
+              <span class="title">الكويت</span>
+              <span class="desc">معلومات عامة عن الكويت</span>
+            </button>
+
+            <button class="category-btn" data-category="الإسلام">
+              <span class="emoji">🕌</span>
+              <span class="title">الإسلام</span>
+              <span class="desc">أركان وسور وعبادات</span>
+            </button>
+
+            <button class="category-btn" data-category="الأنبياء">
+              <span class="emoji">✨</span>
+              <span class="title">الأنبياء</span>
+              <span class="desc">قصص وأسماء ومعجزات</span>
+            </button>
+
+            <button class="category-btn" data-category="العواصم">
+              <span class="emoji">🌍</span>
+              <span class="title">العواصم</span>
+              <span class="desc">دول وعواصم حول العالم</span>
+            </button>
+
+            <button class="category-btn" data-category="الجغرافيا">
+              <span class="emoji">🗺️</span>
+              <span class="title">الجغرافيا</span>
+              <span class="desc">قارات وبحار وأنهار</span>
+            </button>
+
+            <button class="category-btn" data-category="التاريخ">
+              <span class="emoji">🏛️</span>
+              <span class="title">التاريخ</span>
+              <span class="desc">حضارات وأحداث وشخصيات</span>
+            </button>
+
+            <button class="category-btn" data-category="العلوم">
+              <span class="emoji">🧪</span>
+              <span class="title">العلوم</span>
+              <span class="desc">كيمياء وفيزياء وأحياء</span>
+            </button>
+
+            <button class="category-btn" data-category="الرياضة">
+              <span class="emoji">⚽</span>
+              <span class="title">الرياضة</span>
+              <span class="desc">كرة قدم ورياضات متنوعة</span>
+            </button>
+          </div>
+
+          <div class="start-actions">
+            <button id="startBtn" class="primary-btn">ابدأ اللعبة</button>
+          </div>
+        </section>
+
+        <!-- شاشة اللعب -->
+        <section id="quizScreen" class="screen">
+          <div class="quiz-top">
+            <div id="categoryBadge" class="pill-badge">الفئة</div>
+
+            <div class="progress-wrap">
+              <div class="progress-bar">
+                <div id="progressFill" class="progress-fill"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="question-card" id="questionCard">
+            <h2 id="questionText">السؤال يظهر هنا</h2>
+          </div>
+
+          <div id="answersContainer" class="answers-grid"></div>
+
+          <div id="feedbackBox" class="feedback-box hidden">
+            <div id="feedbackTitle" class="feedback-title"></div>
+            <div id="feedbackText" class="feedback-text"></div>
+          </div>
+
+          <div class="action-row">
+            <button id="nextBtn" class="primary-btn hidden">السؤال التالي</button>
+          </div>
+        </section>
+
+        <!-- شاشة النهاية -->
+        <section id="endScreen" class="screen">
+          <div class="end-box">
+            <div class="end-icon">🏆</div>
+            <h2>انتهت الجولة</h2>
+
+            <div class="result-score">
+              مجموع نقاطك: <span id="finalScore">0</span>
+            </div>
+
+            <div class="results-grid">
+              <div class="result-card">
+                <span>الإجابات الصحيحة</span>
+                <strong id="correctCount">0</strong>
+              </div>
+              <div class="result-card">
+                <span>الإجابات الخاطئة</span>
+                <strong id="wrongCount">0</strong>
+              </div>
+              <div class="result-card">
+                <span>نسبة النجاح</span>
+                <strong id="accuracyRate">0%</strong>
+              </div>
+              <div class="result-card">
+                <span>أفضل سلسلة</span>
+                <strong id="bestStreak">0</strong>
+              </div>
+            </div>
+
+            <div class="review-box">
+              <div class="review-title">آخر سؤال</div>
+              <div id="reviewText" class="review-text">-</div>
+            </div>
+
+            <p id="endMessage" class="end-message">أداء جميل!</p>
+
+            <div class="end-actions">
+              <button id="playAgainBtn" class="primary-btn">إعادة اللعب</button>
+              <button id="changeCategoryBtn" class="secondary-btn">تغيير الفئة</button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <aside class="side-panel">
+        <section class="glass side-card">
+          <div class="side-head">
+            <h3>🏅 ترتيب اللاعبين</h3>
+            <button id="clearLeaderboardBtn" class="small-btn">مسح</button>
+          </div>
+          <div id="leaderboardList" class="leaderboard-list"></div>
+        </section>
+
+        <section class="glass side-card">
+          <h3>مميزات النسخة</h3>
+          <div class="feature-list">
+            <div class="feature-item">بنك أسئلة كبير يكفي أكثر من 50 قيم</div>
+            <div class="feature-item">اختيار عدد الأسئلة والوقت</div>
+            <div class="feature-item">فئة عشوائية من كل الأقسام</div>
+            <div class="feature-item">إظهار الجواب الصحيح بشكل واضح</div>
+            <div class="feature-item">تصميم كبير ومناسب للآيفون</div>
+          </div>
+        </section>
+      </aside>
+    </main>
+  </div>
+
+  <script src="questions.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
